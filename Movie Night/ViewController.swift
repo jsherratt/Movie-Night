@@ -11,10 +11,16 @@ import UIKit
 class ViewController: UIViewController {
     
     //-----------------------
+    //MARK: Variables
+    //-----------------------
+    var selectedMovies: [Movie] = []
+    
+    //-----------------------
     //MARK: Outlets
     //-----------------------
     @IBOutlet weak var leftBtn: UIButton!
     @IBOutlet weak var rightBtn: UIButton!
+    @IBOutlet weak var viewResultsBtn: UIButton!
     
     //-----------------------
     //MARK: View
@@ -26,6 +32,17 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(clearSelections))
+        
+        //Round corners of view results button
+        viewResultsBtn.layer.cornerRadius = 5
+        viewResultsBtn.layer.masksToBounds = true
+    }
+    
+    //Test to see if selectedMovieArray gets passed back
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        //print(selectedMovies)
     }
     
     //-----------------------
@@ -33,12 +50,37 @@ class ViewController: UIViewController {
     //-----------------------
     @IBAction func leftBtnTapped(sender: UIButton) {
         
-        //sender.selected = !sender.selected
+        if leftBtn.selected == true {
+            
+            displayOptionAlert()
+            
+        }else {
+            performSegueWithIdentifier("ShowGenres", sender: self)
+            leftBtn.selected = true
+        }
     }
     
     @IBAction func rightBtnTapped(sender: UIButton) {
         
-        //sender.selected = !sender.selected
+        if rightBtn.selected == true {
+            
+            displayOptionAlert()
+            
+        }else {
+            performSegueWithIdentifier("ShowGenres", sender: self)
+            rightBtn.selected = true
+        }
+    }
+    
+    @IBAction func viewResults(sender: UIButton) {
+        
+        if leftBtn.selected == true && rightBtn.selected == true {
+            
+            performSegueWithIdentifier("ShowResults", sender: self)
+            
+        }else {
+            displayAlert("Oops", message: "Both users must make selections")
+        }
     }
     
     //-----------------------

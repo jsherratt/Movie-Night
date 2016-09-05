@@ -15,6 +15,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     let movieDatabase = MovieDatabaseClient()
     var movieArray: [Movie] = []
+    var selectedMovies: [Movie] = []
     var selectedCount = 0
     
     //-----------------------
@@ -35,7 +36,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.hidesBackButton = false
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(next))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(goToFirstViewController))
         
         fetchMovies()
     }
@@ -111,16 +112,20 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     //MARK: Functions
     //-----------------------
-    func next() {
+    func goToFirstViewController() {
         
-        if selectedCount == 0 {
-            
-            displayAlert("Oops", message: "You must select at least 1 genre")
-            
-        }else {
-            
-            performSegueWithIdentifier("ShowMovies", sender: self)
-        }
+        let firstViewController = self.navigationController?.viewControllers[0] as! ViewController
+        firstViewController.selectedMovies = selectedMovies
+        self.navigationController?.popToRootViewControllerAnimated(true)
+        
+//        if selectedCount == 0 {
+//            
+//            displayAlert("Oops", message: "You must select at least 1 movie")
+//            
+//        }else {
+//            
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }
     }
     
     //-------------------------
