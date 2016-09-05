@@ -8,11 +8,17 @@
 
 import Foundation
 
+//-----------------------
+//MARK: Enum
+//-----------------------
 enum Error: ErrorType {
     
     case MissingInfo
 }
 
+//-----------------------
+//MARK: Structs
+//-----------------------
 struct Genre {
     
     var id: String

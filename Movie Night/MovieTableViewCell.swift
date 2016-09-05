@@ -1,5 +1,5 @@
 //
-//  CustomTableViewCell.swift
+//  MovieTableViewCell.swift
 //  Movie Night
 //
 //  Created by Joe Sherratt on 05/09/2016.
@@ -8,13 +8,15 @@
 
 import UIKit
 
-class GenreTableViewCell: UITableViewCell {
+class MovieTableViewCell: UITableViewCell {
     
     //-----------------------
     //MARK: Outlets
     //-----------------------
     @IBOutlet weak var checkmarkImage: UIImageView!
-    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    
     
     //-----------------------
     //MARK: View
@@ -28,6 +30,7 @@ class GenreTableViewCell: UITableViewCell {
     //-----------------------
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
     }
 
 }

@@ -33,12 +33,12 @@ class ViewController: UIViewController {
     //-----------------------
     @IBAction func leftBtnTapped(sender: UIButton) {
         
-        sender.selected = !sender.selected
+        //sender.selected = !sender.selected
     }
     
     @IBAction func rightBtnTapped(sender: UIButton) {
         
-        sender.selected = !sender.selected
+        //sender.selected = !sender.selected
     }
     
     //-----------------------

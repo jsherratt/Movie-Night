@@ -11,7 +11,7 @@ import Foundation
 //-----------------------
 //MARK: Variables
 //-----------------------
-public let SWNetworkingErrorDomain = "com.jsherratt.Star-Wars--The-API-Awakens.NetworkingError"
+public let SWNetworkingErrorDomain = "com.jsherratt.Movie-Database.NetworkingError"
 public let MissingHTTPResponseError: Int = 10
 public let UnexpectedResponseError: Int = 20
 
@@ -68,7 +68,7 @@ extension APIClient {
                 ]
                 
                 //Show the user the network alert
-                NSNotificationCenter.defaultCenter().postNotificationName("NetworkAlert", object: nil)
+                //NSNotificationCenter.defaultCenter().postNotificationName("NetworkAlert", object: nil)
                 
                 let error = NSError(domain: SWNetworkingErrorDomain, code: MissingHTTPResponseError, userInfo: userInfo)
                 completion(nil, nil, error)
