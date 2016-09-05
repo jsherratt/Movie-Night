@@ -13,7 +13,6 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     //MARK: Variables
     //-----------------------
-    var genres = ["Action", "Adventure", "Comedy", "Documentary", "Drama", "Foreign", "Horror", "Thriller"]
     var selectedCount = 0
     let movieDatabase = MovieDatabaseClient()
     var genreArray: [Genre] = []
@@ -29,7 +28,7 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Customise navigation bar
         self.navigationItem.title = "Select Genres"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
@@ -78,10 +77,11 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return genreArray.count
     }
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! GenreTableViewCell
+        
         
         //Set the text in the cells from the data
         let genre = genreArray[indexPath.row]
@@ -90,9 +90,9 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! GenreTableViewCell
         
         //Stop the user from selecting more than 5 genres
         if selectedCount >= 5 {
@@ -103,8 +103,7 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }else {
             
-            cell.checkmarkImage.image = UIImage(named: "selected")
-            
+            //Increase the selected count and update the label
             selectedCount += 1
             
             numberOfSelectedItemsLabel.text = "\(selectedCount) of 5 selected"
@@ -113,11 +112,7 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! GenreTableViewCell
-        
-        //Deselect a selected genre
-        cell.checkmarkImage.image = UIImage(named: "unSelected")
-        
+        //Minus the selected count and update the label
         selectedCount -= 1
         
         numberOfSelectedItemsLabel.text = "\(selectedCount) of 5 selected"

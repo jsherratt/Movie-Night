@@ -71,6 +71,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		D44235EC1D7E23E700F9055F /* Custom Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D44235D81D7DE18E00F9055F /* GenreTableViewCell.swift */,
+				D44235E61D7E0AE900F9055F /* MovieTableViewCell.swift */,
+			);
+			name = "Custom Table View Cells";
+			sourceTree = "<group>";
+		};
 		D4A110DA1D7CAD1B0034E13B = {
 			isa = PBXGroup;
 			children = (
@@ -91,12 +100,11 @@
 			isa = PBXGroup;
 			children = (
 				D4A110E61D7CAD1B0034E13B /* AppDelegate.swift */,
+				D44235DC1D7DED9400F9055F /* Utilities.swift */,
 				D4A110E81D7CAD1B0034E13B /* ViewController.swift */,
 				D44235DA1D7DEA4D00F9055F /* GenreViewController.swift */,
 				D44235E81D7E0B6C00F9055F /* MovieViewController.swift */,
-				D44235D81D7DE18E00F9055F /* GenreTableViewCell.swift */,
-				D44235E61D7E0AE900F9055F /* MovieTableViewCell.swift */,
-				D44235DC1D7DED9400F9055F /* Utilities.swift */,
+				D44235EC1D7E23E700F9055F /* Custom Table View Cells */,
 				D44235E51D7E01F300F9055F /* Models */,
 				D44235E41D7E01EB00F9055F /* API Client */,
 				D4A110EA1D7CAD1B0034E13B /* Main.storyboard */,

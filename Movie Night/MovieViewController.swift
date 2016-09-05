@@ -34,7 +34,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationItem.title = "Select Genres"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationItem.hidesBackButton = true
+        self.navigationItem.hidesBackButton = false
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(next))
         
