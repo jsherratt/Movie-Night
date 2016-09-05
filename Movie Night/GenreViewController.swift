@@ -13,9 +13,9 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     //MARK: Variables
     //-----------------------
-    var selectedCount = 0
     let movieDatabase = MovieDatabaseClient()
     var genreArray: [Genre] = []
+    var selectedCount = 0
     
     //-----------------------
     //MARK: Outlets
