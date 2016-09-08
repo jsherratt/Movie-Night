@@ -133,9 +133,9 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     func next() {
         
-        if selectedCount == 0 {
+        if selectedCount < 5 {
             
-            displayAlert("Oops", message: "You must select at least 1 genre")
+            displayAlert("Oops", message: "You must select 5 genres")
             
         }else {
             

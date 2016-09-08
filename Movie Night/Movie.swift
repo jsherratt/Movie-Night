@@ -16,14 +16,23 @@ struct Movie {
     var title: String
     var releaseDate: String
     var id: Int
+    var overview: String
+    var posterImageURL: NSURL?
     
     init(json: [String : AnyObject]) throws {
         
-        guard let title = json["title"] as? String, let releaseDate = json["release_date"] as? String, let id = json["id"] as? Int else { throw Error.MissingInfo }
+        guard let title = json["title"] as? String, let releaseDate = json["release_date"] as? String, let id = json["id"] as? Int, let overview = json["overview"] as? String ,let posterImageURL = json["poster_path"] as? String else { throw Error.MissingInfo }
         
         self.title = title
         self.releaseDate = releaseDate
         self.id = id
+        self.overview = overview
+        
+        if let imageURL = NSURL(string: "https://image.tmdb.org/t/p/w92\(posterImageURL)") {
+            self.posterImageURL = imageURL
+        } else {
+            self.posterImageURL = nil
+        }
     }
 }
 
@@ -40,8 +49,8 @@ struct Section {
 }
 
 struct ImageLoader {
-    func requestImageDownloadForURL(url: String, completion: (image: UIImage?) -> Void) {
-        if let url = NSURL(string: "https://image.tmdb.org/t/p/w92\(url)") {
+    func requestImageDownloadForURL(url url: NSURL?, completion: (image: UIImage?) -> Void) {
+        if let url = url {
             if let data = NSData(contentsOfURL: url) {
                 if let image = UIImage(data: data) {
                     completion(image: image)

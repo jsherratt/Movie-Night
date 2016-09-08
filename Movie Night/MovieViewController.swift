@@ -166,14 +166,15 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     func goToFirstViewController() {
         
-        if selectedCount == 0 {
+        if selectedCount < 5 {
             
-            displayAlert("Oops", message: "You must select at least 1 movie")
+            displayAlert("Oops", message: "You must select 5 movies")
             
         }else {
             
             let firstViewController = self.navigationController?.viewControllers[0] as! ViewController
             firstViewController.selectedMovies.appendContentsOf(selectedMovieArray)
+            
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
     }

@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         
-        print(selectedMovies)
+        //print(selectedMovies)
     }
     
     //-----------------------
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
             performSegueWithIdentifier("ShowResults", sender: self)
             
         }else {
-            displayAlert("Oops", message: "Both users must make selections")
+            displayAlert("Oops", message: "Both users must make movie selections")
         }
     }
     
@@ -102,7 +102,8 @@ class ViewController: UIViewController {
             
             if let vc = segue.destinationViewController as? ResultsViewController {
                 
-                vc.movies = selectedMovies
+                let sortedSelectedMovies = selectedMovies.sort { $0.title < $1.title }
+                vc.movies = sortedSelectedMovies
             }
         }
     }

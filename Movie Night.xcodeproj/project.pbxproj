@@ -18,6 +18,7 @@
 		D44235EB1D7E0E5A00F9055F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44235EA1D7E0E5A00F9055F /* Movie.swift */; };
 		D44235EE1D7E31CB00F9055F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44235ED1D7E31CB00F9055F /* ResultsViewController.swift */; };
 		D47A86D51D820C24003E88FA /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47A86D41D820C24003E88FA /* ResultsTableViewCell.swift */; };
+		D47A86D71D821A24003E88FA /* ResultsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47A86D61D821A24003E88FA /* ResultsDetailViewController.swift */; };
 		D4A110E71D7CAD1B0034E13B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A110E61D7CAD1B0034E13B /* AppDelegate.swift */; };
 		D4A110E91D7CAD1B0034E13B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A110E81D7CAD1B0034E13B /* ViewController.swift */; };
 		D4A110EC1D7CAD1B0034E13B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A110EA1D7CAD1B0034E13B /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		D44235EA1D7E0E5A00F9055F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D44235ED1D7E31CB00F9055F /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		D47A86D41D820C24003E88FA /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
+		D47A86D61D821A24003E88FA /* ResultsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsDetailViewController.swift; sourceTree = "<group>"; };
 		D4A110E31D7CAD1B0034E13B /* Movie Night.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Night.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A110E61D7CAD1B0034E13B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4A110E81D7CAD1B0034E13B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				D44235DA1D7DEA4D00F9055F /* GenreViewController.swift */,
 				D44235E81D7E0B6C00F9055F /* MovieViewController.swift */,
 				D44235ED1D7E31CB00F9055F /* ResultsViewController.swift */,
+				D47A86D61D821A24003E88FA /* ResultsDetailViewController.swift */,
 				D44235EC1D7E23E700F9055F /* Custom Table View Cells */,
 				D44235E51D7E01F300F9055F /* Models */,
 				D44235E41D7E01EB00F9055F /* API Client */,
@@ -209,6 +212,7 @@
 				D44235D91D7DE18E00F9055F /* GenreTableViewCell.swift in Sources */,
 				D44235DD1D7DED9400F9055F /* Utilities.swift in Sources */,
 				D4A110E71D7CAD1B0034E13B /* AppDelegate.swift in Sources */,
+				D47A86D71D821A24003E88FA /* ResultsDetailViewController.swift in Sources */,
 				D44235DF1D7DF4FD00F9055F /* APIClient.swift in Sources */,
 				D44235E11D7DF50800F9055F /* MovieDatabaseClient.swift in Sources */,
 				D44235EB1D7E0E5A00F9055F /* Movie.swift in Sources */,
