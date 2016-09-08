@@ -1,25 +1,25 @@
 //
-//  MovieTableViewCell.swift
+//  ResultsTableViewCell.swift
 //  Movie Night
 //
-//  Created by Joe Sherratt on 05/09/2016.
+//  Created by Joe Sherratt on 08/09/2016.
 //  Copyright © 2016 jsherratt. All rights reserved.
 //
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
-    
+class ResultsTableViewCell: UITableViewCell {
+
     //-----------------------
     //MARK: Outlets
     //-----------------------
-    @IBOutlet weak var checkmarkImage: UIImageView!
+    @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
     //-----------------------
     //MARK: View
-    //-----------------------
+    //----------------------
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -29,8 +29,5 @@ class MovieTableViewCell: UITableViewCell {
     //-----------------------
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        self.checkmarkImage.image = selected ? UIImage(named: "selected") : UIImage(named: "unSelected")
     }
-
 }

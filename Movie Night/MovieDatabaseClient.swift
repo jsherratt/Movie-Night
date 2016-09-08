@@ -15,27 +15,30 @@ enum MovieDatabase: Endpoint {
     
     case Genres
     
-    var baseURL: NSURL {
-        return NSURL(string: "http://api.themoviedb.org/3/")!
+    case Movies
+    
+    var baseURL: String {
+        return "http://api.themoviedb.org/3/"
     }
     
     private var apiKey: String {
         
         return "06ae2257d3872f41ebdbb16eb888bd17"
+        
     }
     
-    var path: String {
+    func createUrl(withQuery query: Int?) -> NSURL {
         
         switch self {
+            
         case .Genres:
-            return "genre/movie/list?api_key=\(apiKey)"
+            
+            return NSURL(string: baseURL + "genre/movie/list?api_key=\(apiKey)")!
+            
+        case .Movies:
+            
+            return NSURL(string: baseURL + "genre/\(query!))/movies?api_key=\(apiKey)" )!
         }
-    }
-    
-    var request: NSURLRequest {
-        
-        let url = NSURL(string: path, relativeToURL: baseURL)!
-        return NSURLRequest(URL: url)
     }
 }
 
@@ -62,7 +65,7 @@ final class MovieDatabaseClient: APIClient {
     //-----------------------
     func fetchGenres(completion: APIResult<[Genre]> -> Void) {
         
-        let request = MovieDatabase.Genres.request
+        let request = NSURLRequest(URL: MovieDatabase.Genres.createUrl(withQuery: nil))
         
         fetch(request, parse: { json -> [Genre]? in
                         
@@ -71,6 +74,29 @@ final class MovieDatabaseClient: APIClient {
                 return genres.flatMap { genreDict in
                     
                     return try? Genre(json: genreDict)
+                }
+                
+            }else {
+                return nil
+            }
+            
+            }, completion: completion)
+    }
+    
+    //-----------------------
+    //MARK: Movies
+    //-----------------------
+    func fetchMoviesWithGenre(withQuery query: Int?, completion: APIResult<[Movie]> -> Void) {
+        
+        let request = NSURLRequest(URL: MovieDatabase.Movies.createUrl(withQuery: query))
+        
+        fetch(request, parse: { json -> [Movie]? in
+            
+            if let movies = json["results"] as? [[String : AnyObject]] {
+                
+                return movies.flatMap { movieDict in
+                    
+                    return try? Movie(json: movieDict)
                 }
                 
             }else {

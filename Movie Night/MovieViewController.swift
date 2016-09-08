@@ -13,11 +13,18 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     //MARK: Variables
     //-----------------------
-    let movieDatabase = MovieDatabaseClient()
-    var movieArray: [Movie] = []
-    var selectedMovies: [Movie] = []
-    var selectedCount = 0
     
+    //Movie database client and sections for table view
+    let movieDatabase = MovieDatabaseClient()
+    var sectionsArray: [Section] = []
+    
+    //Selected genres from genre view controller
+    var selectedGenres: [Genre] = []
+    
+    //Selected movies from movie view controller
+    var selectedMovieArray: [Movie] = []
+    var selectedCount = 0
+
     //-----------------------
     //MARK: Outlets
     //-----------------------
@@ -38,6 +45,12 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(goToFirstViewController))
         
+    }
+    
+    //ViewDidAppear because the user may go back and change genre selections
+    override func viewDidAppear(animated: Bool) {
+        
+        //Fetch movies for selected genres
         fetchMovies()
     }
     
@@ -47,9 +60,37 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //Fetch all genres
     func fetchMovies() {
+
+        var index = 0
         
-        
-        
+        //Fetch movies for each genre id
+        for id in selectedGenres {
+            
+            movieDatabase.fetchMoviesWithGenre(withQuery: Int(id.id)) { (result) in
+                
+                switch result {
+                    
+                case.Success(let movies):
+                    
+                    let sortedMoviesArray = movies.sort { $0.title < $1.title }
+                    
+                    //Create a section each set of movies
+                    let movies = Section(title: self.selectedGenres[index].name, items: sortedMoviesArray)
+                    self.sectionsArray.append(movies)
+                    
+                    self.tableView.reloadData()
+                    
+                    index += 1
+                    
+                case .Failure(let error as NSError):
+                    
+                    print(error.localizedDescription)
+                    
+                default:
+                    break
+                }
+            }
+        }
     }
     
     //-----------------------
@@ -57,12 +98,12 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 1
+        return sectionsArray.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return movieArray.count
+        return sectionsArray[section].items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -70,15 +111,14 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! MovieTableViewCell
         
         //Set the text in the cells from the data
-        let movie = movieArray[indexPath.row]
+        let movie = sectionsArray[indexPath.section].items[indexPath.row]
         cell.titleLabel.text = movie.title
+        cell.yearLabel.text = movie.releaseDate
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! MovieTableViewCell
         
         //Stop the user from selecting more than 5 genres
         if selectedCount >= 5 {
@@ -89,24 +129,36 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }else {
             
-            cell.checkmarkImage.image = UIImage(named: "selected")
+            //Add selected movie to selected movie array so it can be passed to another view controller
+            let movie = sectionsArray[indexPath.section].items[indexPath.row]
+            selectedMovieArray.append(movie)
             
+            //Increase the selected count and update the label
             selectedCount += 1
-            
             numberOfSelectedItemsLabel.text = "\(selectedCount) of 5 selected"
         }
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! MovieTableViewCell
+        //Removed the selected movie from the selected movie array
+        let movie = sectionsArray[indexPath.section].items[indexPath.row]
+        if let indexOfMovie = selectedMovieArray.indexOf({$0.title == movie.title}) {
+            
+            selectedMovieArray.removeAtIndex(indexOfMovie)
+        }
         
-        //Deselect a selected genre
-        cell.checkmarkImage.image = UIImage(named: "unSelected")
-        
+        //Minus the selected count and update the label
         selectedCount -= 1
-        
         numberOfSelectedItemsLabel.text = "\(selectedCount) of 5 selected"
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        //Set the title of each section
+        let sortedGenres = sectionsArray.sort { $0.title < $1.title }
+        
+        return sortedGenres[section].title
     }
     
     //-----------------------
@@ -114,18 +166,16 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     func goToFirstViewController() {
         
-        let firstViewController = self.navigationController?.viewControllers[0] as! ViewController
-        firstViewController.selectedMovies = selectedMovies
-        self.navigationController?.popToRootViewControllerAnimated(true)
-        
-//        if selectedCount == 0 {
-//            
-//            displayAlert("Oops", message: "You must select at least 1 movie")
-//            
-//        }else {
-//            
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        }
+        if selectedCount == 0 {
+            
+            displayAlert("Oops", message: "You must select at least 1 movie")
+            
+        }else {
+            
+            let firstViewController = self.navigationController?.viewControllers[0] as! ViewController
+            firstViewController.selectedMovies.appendContentsOf(selectedMovieArray)
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }
     }
     
     //-------------------------

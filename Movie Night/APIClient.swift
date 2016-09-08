@@ -38,9 +38,7 @@ protocol JSONDecodable {
 
 protocol Endpoint {
     
-    var baseURL: NSURL { get }
-    var path: String { get }
-    var request: NSURLRequest { get }
+    var baseURL: String { get }
 }
 
 protocol APIClient {

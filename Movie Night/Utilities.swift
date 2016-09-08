@@ -41,3 +41,14 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
 }
+
+extension Array where Element: Hashable {
+    
+    func mergeDuplicates() -> [Element: Int] {
+        var result = [Element: Int]()
+        
+        self.forEach({ result[$0] = result[$0] ?? 0 + 1 })
+        
+        return result
+    }
+}

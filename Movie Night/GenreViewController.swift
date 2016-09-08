@@ -15,6 +15,7 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     let movieDatabase = MovieDatabaseClient()
     var genreArray: [Genre] = []
+    var selectedGenreArray: [Genre] = []
     var selectedCount = 0
     
     //-----------------------
@@ -103,18 +104,27 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }else {
             
+            //Add selected genre to selected genre array so it can be passed to another view controller
+            let genre = genreArray[indexPath.row]
+            selectedGenreArray.append(genre)
+            
             //Increase the selected count and update the label
             selectedCount += 1
-            
             numberOfSelectedItemsLabel.text = "\(selectedCount) of 5 selected"
         }
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
+        //Removed the selected genre from the selected genre array
+        let genre = genreArray[indexPath.row]
+        if let indexOfGenre = selectedGenreArray.indexOf({$0.name == genre.name}) {
+            
+            selectedGenreArray.removeAtIndex(indexOfGenre)
+        }
+        
         //Minus the selected count and update the label
         selectedCount -= 1
-        
         numberOfSelectedItemsLabel.text = "\(selectedCount) of 5 selected"
     }
     
@@ -138,7 +148,13 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-------------------------
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        
+        if segue.identifier == "ShowMovies" {
+            
+            if let vc = segue.destinationViewController as? MovieViewController {
+                
+                vc.selectedGenres = selectedGenreArray
+            }
+        }
     }
     
     //-----------------------

@@ -25,7 +25,13 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     //-----------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //Customise navigation bar
+        self.navigationItem.title = "Results"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        print(movies.count)
     }
     
     //-----------------------
@@ -43,7 +49,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! MovieTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! ResultsTableViewCell
         
         let movie = movies[indexPath.row]
         cell.titleLabel.text = movie.title

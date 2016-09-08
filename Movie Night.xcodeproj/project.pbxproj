@@ -17,6 +17,7 @@
 		D44235E91D7E0B6C00F9055F /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44235E81D7E0B6C00F9055F /* MovieViewController.swift */; };
 		D44235EB1D7E0E5A00F9055F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44235EA1D7E0E5A00F9055F /* Movie.swift */; };
 		D44235EE1D7E31CB00F9055F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44235ED1D7E31CB00F9055F /* ResultsViewController.swift */; };
+		D47A86D51D820C24003E88FA /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47A86D41D820C24003E88FA /* ResultsTableViewCell.swift */; };
 		D4A110E71D7CAD1B0034E13B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A110E61D7CAD1B0034E13B /* AppDelegate.swift */; };
 		D4A110E91D7CAD1B0034E13B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A110E81D7CAD1B0034E13B /* ViewController.swift */; };
 		D4A110EC1D7CAD1B0034E13B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4A110EA1D7CAD1B0034E13B /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		D44235E81D7E0B6C00F9055F /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		D44235EA1D7E0E5A00F9055F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D44235ED1D7E31CB00F9055F /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		D47A86D41D820C24003E88FA /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
 		D4A110E31D7CAD1B0034E13B /* Movie Night.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Movie Night.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4A110E61D7CAD1B0034E13B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4A110E81D7CAD1B0034E13B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				D44235D81D7DE18E00F9055F /* GenreTableViewCell.swift */,
 				D44235E61D7E0AE900F9055F /* MovieTableViewCell.swift */,
+				D47A86D41D820C24003E88FA /* ResultsTableViewCell.swift */,
 			);
 			name = "Custom Table View Cells";
 			sourceTree = "<group>";
@@ -153,11 +156,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = jsherratt;
 				TargetAttributes = {
 					D4A110E21D7CAD1B0034E13B = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = T2WARM6VRQ;
 					};
 				};
 			};
@@ -199,6 +203,7 @@
 			files = (
 				D44235DB1D7DEA4D00F9055F /* GenreViewController.swift in Sources */,
 				D44235E91D7E0B6C00F9055F /* MovieViewController.swift in Sources */,
+				D47A86D51D820C24003E88FA /* ResultsTableViewCell.swift in Sources */,
 				D4A110E91D7CAD1B0034E13B /* ViewController.swift in Sources */,
 				D44235E71D7E0AE900F9055F /* MovieTableViewCell.swift in Sources */,
 				D44235D91D7DE18E00F9055F /* GenreTableViewCell.swift in Sources */,
@@ -248,8 +253,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -293,8 +300,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -313,6 +322,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -321,10 +331,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T2WARM6VRQ;
 				INFOPLIST_FILE = "Movie Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jsherratt.Movie-Night";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -332,10 +344,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T2WARM6VRQ;
 				INFOPLIST_FILE = "Movie Night/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jsherratt.Movie-Night";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

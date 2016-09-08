@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(clearSelections))
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: nil)
         
         //Round corners of view results button
         viewResultsBtn.layer.cornerRadius = 5
@@ -42,7 +43,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         
-        //print(selectedMovies)
+        print(selectedMovies)
     }
     
     //-----------------------
@@ -90,6 +91,20 @@ class ViewController: UIViewController {
         
         leftBtn.selected = false
         rightBtn.selected = false
+    }
+    
+    //-------------------------
+    //MARK: Prepare for Segue
+    //-------------------------
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowResults" {
+            
+            if let vc = segue.destinationViewController as? ResultsViewController {
+                
+                vc.movies = selectedMovies
+            }
+        }
     }
     
     //-----------------------
