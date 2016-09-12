@@ -38,7 +38,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         //Customise navigation bar
-        self.navigationItem.title = "Select Genres"
+        self.navigationItem.title = "Select Movies"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.hidesBackButton = false

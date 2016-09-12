@@ -10,12 +10,14 @@ import UIKit
 
 class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //MARK:TODO - Remove duplicates from movie array and display that that movie was choosen by both users
+    //MARK:TODO - Display that a movie was choosen by both users
     
     //-----------------------
     //MARK: Variables
     //-----------------------
     var movies: [Movie] = []
+    var moviesWithoutDuplicatesDict: [Movie : Int] = [:]
+    var movieArray: [Movie] = []
     var selectedMovie: Movie?
     
     //-----------------------
@@ -33,7 +35,20 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationItem.title = "Results"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-
+        
+        for movie in movies {
+            
+            moviesWithoutDuplicatesDict[movie] = (moviesWithoutDuplicatesDict[movie] ?? 0) + 1
+        }
+        
+        let sortedMovies = moviesWithoutDuplicatesDict.sort { $0.0.title < $1.0.title }
+        
+        for (key, value) in sortedMovies {
+            
+            print("\(key.title) has been selected \(value) times")
+        }
+        
+        movieArray = Array(self.moviesWithoutDuplicatesDict.keys)
     }
     
     //-----------------------
@@ -46,16 +61,26 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return movies.count
+        return moviesWithoutDuplicatesDict.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! ResultsTableViewCell
         
-        let movie = movies[indexPath.row]
+        let sortedMovieArray = movieArray.sort { $0.title < $1.title }
+        
+        let movie = sortedMovieArray[indexPath.row]
         cell.titleLabel.text = movie.title
         cell.yearLabel.text = movie.releaseDate
+        
+//        let sortedMovies = moviesWithoutDuplicatesDict.sort { $0.0.title < $1.0.title }
+        
+        //Figure out how to access value from key
+//        if moviesWithoutDuplicatesDict.keys[indexPath.row] > 1 {
+//            
+//            
+//        }
         
         if indexPath.row % 2 == 0 {
             
@@ -70,7 +95,9 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        selectedMovie = movies[indexPath.row]
+        let sortedMovieArray = movieArray.sort { $0.title < $1.title }
+        
+        selectedMovie = sortedMovieArray[indexPath.row]
         
         performSegueWithIdentifier("ShowDetail", sender: self)
     }

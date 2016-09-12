@@ -11,13 +11,17 @@ import UIKit
 //-----------------------
 //MARK: Structs
 //-----------------------
-struct Movie {
+struct Movie: Hashable {
     
     var title: String
     var releaseDate: String
     var id: Int
     var overview: String
     var posterImageURL: NSURL?
+    
+    var hashValue: Int {
+        return self.id
+    }
     
     init(json: [String : AnyObject]) throws {
         
@@ -34,6 +38,10 @@ struct Movie {
             self.posterImageURL = nil
         }
     }
+}
+
+func == (lhs: Movie, rhs: Movie) -> Bool {
+    return lhs.id == rhs.id
 }
 
 struct Section {
