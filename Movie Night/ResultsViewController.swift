@@ -36,6 +36,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
         for movie in movies {
             
             moviesWithoutDuplicatesDict[movie] = (moviesWithoutDuplicatesDict[movie] ?? 0) + 1
@@ -76,25 +78,28 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if indexPath.row % 2 == 0 {
             
+            cell.cellImage.backgroundColor = UIColor(red: 155/255.0, green: 212/255.0, blue: 235/255.0, alpha: 1.0)
+            
             if moviesWithoutDuplicatesDict[sortedMovieArray[indexPath.row]] > 1 {
                 
-                print("change cell color of \(indexPath.row)")
+                cell.doubleSelectionImage.hidden = false
                 
-                cell.cellImage.backgroundColor = UIColor.greenColor()
             }else {
-                cell.cellImage.backgroundColor = UIColor(red: 155/255.0, green: 212/255.0, blue: 235/255.0, alpha: 1.0)
+                
+                cell.doubleSelectionImage.hidden = true
             }
             
         }else {
             
+            cell.cellImage.backgroundColor = UIColor(red: 181/255.0, green: 227/255.0, blue: 245/255.0, alpha: 1.0)
+            
             if moviesWithoutDuplicatesDict[sortedMovieArray[indexPath.row]] > 1 {
                 
-                print("change cell color of \(indexPath.row)")
+                cell.doubleSelectionImage.hidden = false
                 
-                cell.cellImage.backgroundColor = UIColor.greenColor()
             }else {
                 
-                cell.cellImage.backgroundColor = UIColor(red: 181/255.0, green: 227/255.0, blue: 245/255.0, alpha: 1.0)
+                cell.doubleSelectionImage.hidden = true
             }
         }
         

@@ -152,7 +152,9 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if let vc = segue.destinationViewController as? MovieViewController {
                 
-                vc.selectedGenres = selectedGenreArray
+                let sortedGenreArray = selectedGenreArray.sort { $0.name < $1.name }
+                
+                vc.selectedGenres = sortedGenreArray
             }
         }
     }

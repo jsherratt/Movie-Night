@@ -27,8 +27,10 @@ struct Movie: Hashable {
         
         guard let title = json["title"] as? String, let releaseDate = json["release_date"] as? String, let id = json["id"] as? Int, let overview = json["overview"] as? String ,let posterImageURL = json["poster_path"] as? String else { throw Error.MissingInfo }
         
+        let dateFormatter = NSDateFormatter()
+        
         self.title = title
-        self.releaseDate = releaseDate
+        self.releaseDate = dateFormatter.convertDate(dateString: releaseDate)
         self.id = id
         self.overview = overview
         

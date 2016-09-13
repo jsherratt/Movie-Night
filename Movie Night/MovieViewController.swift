@@ -108,6 +108,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! MovieTableViewCell
         
         //Set the text in the cells from the data

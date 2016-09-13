@@ -14,6 +14,7 @@ class ResultsTableViewCell: UITableViewCell {
     //MARK: Outlets
     //-----------------------
     @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var doubleSelectionImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     

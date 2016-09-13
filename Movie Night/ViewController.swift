@@ -91,6 +91,8 @@ class ViewController: UIViewController {
         
         leftBtn.selected = false
         rightBtn.selected = false
+        
+        selectedMovies.removeAll()
     }
     
     //-------------------------

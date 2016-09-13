@@ -52,3 +52,17 @@ extension Array where Element: Hashable {
         return result
     }
 }
+
+extension NSDateFormatter {
+    
+    func convertDate(dateString dateString: String) -> String {
+        
+        self.dateFormat = "yyyy/MM/dd"
+        let dateFromString = self.dateFromString(dateString)
+        
+        self.dateFormat = "yyyy"
+        let stringFromDate = self.stringFromDate(dateFromString!)
+        
+        return stringFromDate
+    }
+}
