@@ -19,6 +19,7 @@ struct Movie: Hashable {
     var overview: String
     var posterImageURL: NSURL?
     
+    //Conform to protocol hasable
     var hashValue: Int {
         return self.id
     }
@@ -42,22 +43,7 @@ struct Movie: Hashable {
     }
 }
 
-func == (lhs: Movie, rhs: Movie) -> Bool {
-    return lhs.id == rhs.id
-}
-
-struct Section {
-    
-    var title : String
-    var items : [Movie]
-    
-    init(title: String, items : [Movie]) {
-        
-        self.title = title
-        self.items = items
-    }
-}
-
+//Struct for fetching the image from a url
 struct ImageLoader {
     func requestImageDownloadForURL(url url: NSURL?, completion: (image: UIImage?) -> Void) {
         if let url = url {
@@ -67,5 +53,23 @@ struct ImageLoader {
                 }
             }
         }
+    }
+}
+
+//Conform to protocol hasable
+func == (lhs: Movie, rhs: Movie) -> Bool {
+    return lhs.id == rhs.id
+}
+
+//Struct to model a section for UITableView in the movie view controller
+struct Section {
+    
+    var title : String
+    var items : [Movie]
+    
+    init(title: String, items : [Movie]) {
+        
+        self.title = title
+        self.items = items
     }
 }

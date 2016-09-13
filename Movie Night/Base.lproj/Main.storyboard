@@ -171,7 +171,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tYF-A9-a2l" id="yhF-FV-uKq">
-                                            <frame key="frameInset" width="375" height="63"/>
+                                            <frame key="frameInset" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gBM-8q-rZG">
@@ -348,7 +348,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dvs-Wk-dcE" id="1cC-Z5-tz2">
-                                            <frame key="frameInset" width="375" height="63"/>
+                                            <frame key="frameInset" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="1EL-2X-G6H">
@@ -534,11 +534,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hg2-Gj-F32">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="aH9-7l-WRM" customClass="ResultsTableViewCell" customModule="Movie_Night" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="aH9-7l-WRM" customClass="ResultsTableViewCell" customModule="Movie_Night" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aH9-7l-WRM" id="yiw-bn-QlS">
-                                            <frame key="frameInset" width="375" height="63"/>
+                                            <frame key="frameInset" width="342" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gPo-fl-z0p">
@@ -566,7 +566,7 @@
                                             <constraints>
                                                 <constraint firstItem="z29-NR-m1o" firstAttribute="centerY" secondItem="gPo-fl-z0p" secondAttribute="centerY" id="7g2-nc-rdy"/>
                                                 <constraint firstItem="z29-NR-m1o" firstAttribute="centerX" secondItem="gPo-fl-z0p" secondAttribute="centerX" id="Dz0-Zs-FC2"/>
-                                                <constraint firstAttribute="bottom" secondItem="gPo-fl-z0p" secondAttribute="bottom" id="K8H-pc-spL"/>
+                                                <constraint firstAttribute="bottom" secondItem="gPo-fl-z0p" secondAttribute="bottom" constant="-1" id="K8H-pc-spL"/>
                                                 <constraint firstItem="gSw-BW-nrt" firstAttribute="leading" secondItem="gPo-fl-z0p" secondAttribute="trailing" constant="8" id="LEO-v4-uwl"/>
                                                 <constraint firstItem="gPo-fl-z0p" firstAttribute="top" secondItem="yiw-bn-QlS" secondAttribute="top" id="P8p-We-4d3"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Qgr-7R-q00" secondAttribute="trailing" id="WaA-4U-P9c"/>

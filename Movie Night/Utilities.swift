@@ -42,17 +42,7 @@ extension UIViewController {
     }
 }
 
-extension Array where Element: Hashable {
-    
-    func mergeDuplicates() -> [Element: Int] {
-        var result = [Element: Int]()
-        
-        self.forEach({ result[$0] = result[$0] ?? 0 + 1 })
-        
-        return result
-    }
-}
-
+//Format the release date for a movie 
 extension NSDateFormatter {
     
     func convertDate(dateString dateString: String) -> String {

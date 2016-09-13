@@ -18,10 +18,10 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let movieDatabase = MovieDatabaseClient()
     var sectionsArray: [Section] = []
     
-    //Selected genres from genre view controller
+    //Selected genres from genre view
     var selectedGenres: [Genre] = []
     
-    //Selected movies from movie view controller
+    //Selected movies and selected movie count
     var selectedMovieArray: [Movie] = []
     var selectedCount = 0
 
@@ -45,12 +45,15 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(goToFirstViewController))
         
+        //Add notification observer for the showAlert function
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showAlert), name: "NetworkAlert", object: nil)
+        
     }
     
     //ViewDidAppear because the user may go back and change genre selections
     override func viewDidAppear(animated: Bool) {
         
-        //Fetch movies for selected genres
+        //Fetch movies
         fetchMovies()
     }
     
@@ -58,15 +61,15 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //MARK: Movie Database Functions
     //--------------------------------
     
-    //Fetch all genres
+    //Fetch movies for the selected genres
     func fetchMovies() {
 
         var index = 0
         
         //Fetch movies for each genre id
-        for id in selectedGenres {
+        for genre in selectedGenres {
             
-            movieDatabase.fetchMoviesWithGenre(withQuery: Int(id.id)) { (result) in
+            movieDatabase.fetchMoviesWithGenre(withQuery: Int(genre.id)) { (result) in
                 
                 switch result {
                     
@@ -74,10 +77,11 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     
                     let sortedMoviesArray = movies.sort { $0.title < $1.title }
                     
-                    //Create a section each set of movies
+                    //Create a section for each genre and the movies for that genre
                     let movies = Section(title: self.selectedGenres[index].name, items: sortedMoviesArray)
                     self.sectionsArray.append(movies)
                     
+                    //Reload the table
                     self.tableView.reloadData()
                     
                     index += 1
@@ -98,11 +102,13 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
+        //Number of sections is equal to the number of genres
         return sectionsArray.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        //Number of rows for each section is equal to the mo
         return sectionsArray[section].items.count
     }
     
@@ -111,7 +117,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! MovieTableViewCell
         
-        //Set the text in the cells from the data
+        //Set the text in the cells from the movie data
         let movie = sectionsArray[indexPath.section].items[indexPath.row]
         cell.titleLabel.text = movie.title
         cell.yearLabel.text = movie.releaseDate
@@ -165,6 +171,8 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     //MARK: Functions
     //-----------------------
+    
+    //Return to the root view controller if 5 movies have been selected
     func goToFirstViewController() {
         
         if selectedCount < 5 {
@@ -173,19 +181,24 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         }else {
             
+            //Append the contents of the selected movies array to the selected movies array in the root view controller
             let firstViewController = self.navigationController?.viewControllers[0] as! ViewController
             firstViewController.selectedMovies.appendContentsOf(selectedMovieArray)
             
+            //Pop to the root view controller
             self.navigationController?.popToRootViewControllerAnimated(true)
         }
     }
     
-    //-------------------------
-    //MARK: Prepare for Segue
-    //-------------------------
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //Show alert when there is no network connection
+    func showAlert() {
         
-        
+        displayAlert("Error", message: "Check the network connection and try again")
+    }
+    
+    //Deinit the notification observer
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "NetworkAlert", object: nil)
     }
     
     //-----------------------

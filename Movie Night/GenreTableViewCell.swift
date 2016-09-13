@@ -29,6 +29,7 @@ class GenreTableViewCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+        //Set the image of the checkmark for selected and unSelected state
         self.checkmarkImage.image = selected ? UIImage(named: "selected") : UIImage(named: "unSelected")
     }
 

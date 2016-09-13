@@ -13,9 +13,17 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     //MARK: Variables
     //-----------------------
+    
+    //Movie database to make api calls
     let movieDatabase = MovieDatabaseClient()
+    
+    //Array of genres
     var genreArray: [Genre] = []
+    
+    //Array for the selected genres
     var selectedGenreArray: [Genre] = []
+    
+    //Count for number of selected genres
     var selectedCount = 0
     
     //-----------------------
@@ -38,14 +46,19 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: self, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(next))
         
+        //Add notification observer for the showAlert function
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showAlert), name: "NetworkAlert", object: nil)
+        
+        //Fetch all genres
         fetchGenres()
+        
     }
     
     //--------------------------------
     //MARK: Movie Database Functions
     //--------------------------------
     
-    //Fetch all genres
+    //Fetch all available genres
     func fetchGenres() {
         
         movieDatabase.fetchGenres { (result) in
@@ -54,6 +67,7 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
             case .Success(let genres):
                 
+                //Assign the genres to the genre array and reload the table view
                 self.genreArray = genres
                 self.tableView.reloadData()
                 
@@ -76,13 +90,13 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        //Number of rows is equal to the number of genres
         return genreArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! GenreTableViewCell
-        
         
         //Set the text in the cells from the data
         let genre = genreArray[indexPath.row]
@@ -131,6 +145,8 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //-----------------------
     //MARK: Functions
     //-----------------------
+    
+    //Move to the movies view if 5 genres have been selected
     func next() {
         
         if selectedCount < 5 {
@@ -143,9 +159,22 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    //Show alert when there is no network connection
+    func showAlert() {
+        
+        displayAlert("Error", message: "Check the network connection and try again")
+    }
+    
+    //Deinit the notification observer
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "NetworkAlert", object: nil)
+    }
+    
     //-------------------------
     //MARK: Prepare for Segue
     //-------------------------
+    
+    //Pass the selected genres to the movie view 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowMovies" {

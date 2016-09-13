@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     //-----------------------
     //MARK: Variables
     //-----------------------
+    
+    //Array of movies after both users have made their selections. This will passed to the results view after
     var selectedMovies: [Movie] = []
     
     //-----------------------
@@ -39,16 +41,11 @@ class ViewController: UIViewController {
         viewResultsBtn.layer.masksToBounds = true
     }
     
-    //Test to see if selectedMovieArray gets passed back
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        
-        //print(selectedMovies)
-    }
-    
     //-----------------------
     //MARK: Button Actions
     //-----------------------
+    
+    //If the left or right user has already made selections, display an alert notifying them. They can also repeat their selections. Otherwise move to the genre view
     @IBAction func leftBtnTapped(sender: UIButton) {
         
         if leftBtn.selected == true {
@@ -73,6 +70,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //If both users have made selections move to the results view to show the movies
     @IBAction func viewResults(sender: UIButton) {
         
         if leftBtn.selected == true && rightBtn.selected == true {
@@ -87,6 +85,8 @@ class ViewController: UIViewController {
     //-----------------------
     //MARK: Functions
     //-----------------------
+    
+    //Clear user selections and reset buttons
     func clearSelections() {
         
         leftBtn.selected = false
@@ -98,6 +98,8 @@ class ViewController: UIViewController {
     //-------------------------
     //MARK: Prepare for Segue
     //-------------------------
+    
+    //Pass the selected movies to the results view
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "ShowResults" {

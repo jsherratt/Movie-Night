@@ -34,11 +34,21 @@ class ResultsDetailViewController: UIViewController {
         doneBtn.layer.cornerRadius = 5
         doneBtn.layer.masksToBounds = true
         
+        //Add notification observer for the showAlert function
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showAlert), name: "NetworkAlert", object: nil)
+        
+        //Fetch image for movie
         fetchImageForMovie()
         
+        //Set text of overview text label with movie overview
         overviewTextLabel.text = movie?.overview
     }
     
+    //--------------------------------
+    //MARK: Movie Database Functions
+    //--------------------------------
+    
+    //Fetch the poster image for the movie
     func fetchImageForMovie() {
         
         imageLoader.requestImageDownloadForURL(url: movie?.posterImageURL) { image in
@@ -48,7 +58,21 @@ class ResultsDetailViewController: UIViewController {
                 self.movieImage.image = image
             }
         }
+    }
+    
+    //-----------------------
+    //MARK: Functions
+    //-----------------------
+    
+    //Show alert when there is no network connection
+    func showAlert() {
         
+        displayAlert("Error", message: "Check the network connection and try again")
+    }
+    
+    //Deinit the notification observer
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "NetworkAlert", object: nil)
     }
     
     //-----------------------
