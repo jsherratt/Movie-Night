@@ -34,6 +34,11 @@ class ResultsDetailViewController: UIViewController {
         doneBtn.layer.cornerRadius = 5
         doneBtn.layer.masksToBounds = true
         
+        //Round corners of movie image
+        movieImage.layer.borderWidth = 3
+        movieImage.layer.borderColor = UIColor(red: 175/255.0, green: 66/255.0, blue: 70/255.0, alpha: 1.0).CGColor
+        movieImage.layer.masksToBounds = true
+        
         //Add notification observer for the showAlert function
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(showAlert), name: "NetworkAlert", object: nil)
         
@@ -67,7 +72,7 @@ class ResultsDetailViewController: UIViewController {
     //Show alert when there is no network connection
     func showAlert() {
         
-        displayAlert("Error", message: "Check the network connection and try again")
+        displayNetworkAlert("Error", message: "Check the network connection and try again")
     }
     
     //Deinit the notification observer

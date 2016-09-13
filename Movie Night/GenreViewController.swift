@@ -162,7 +162,11 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //Show alert when there is no network connection
     func showAlert() {
         
-        displayAlert("Error", message: "Check the network connection and try again")
+        displayNetworkAlert("Error", message: "Check the network connection and try again")
+        
+        //Set hasNetworkError to true
+        let firstViewController = self.navigationController?.viewControllers[0] as! ViewController
+        firstViewController.hasNetworkError = true
     }
     
     //Deinit the notification observer

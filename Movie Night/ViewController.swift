@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     //Array of movies after both users have made their selections. This will passed to the results view after
     var selectedMovies: [Movie] = []
+    var hasNetworkError = false
     
     //-----------------------
     //MARK: Outlets
@@ -39,6 +40,16 @@ class ViewController: UIViewController {
         //Round corners of view results button
         viewResultsBtn.layer.cornerRadius = 5
         viewResultsBtn.layer.masksToBounds = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        //Reset selections if there was a network error
+        if hasNetworkError == true {
+
+            clearSelections()
+        }
     }
     
     //-----------------------
@@ -88,6 +99,8 @@ class ViewController: UIViewController {
     
     //Clear user selections and reset buttons
     func clearSelections() {
+        
+        hasNetworkError = false
         
         leftBtn.selected = false
         rightBtn.selected = false

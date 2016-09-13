@@ -25,6 +25,19 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    //General alert for errors etc
+    func displayNetworkAlert(title:String, message:String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (alertAction) -> Void in
+            
+            self.navigationController?.popToRootViewControllerAnimated(true)
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     //Option alert for when the user taps on selection button after already making them
     func displayOptionAlert() {
         
