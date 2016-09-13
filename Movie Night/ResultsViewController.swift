@@ -74,20 +74,28 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.titleLabel.text = movie.title
         cell.yearLabel.text = movie.releaseDate
         
-//        let sortedMovies = moviesWithoutDuplicatesDict.sort { $0.0.title < $1.0.title }
-        
-        //Figure out how to access value from key
-//        if moviesWithoutDuplicatesDict.keys[indexPath.row] > 1 {
-//            
-//            
-//        }
-        
         if indexPath.row % 2 == 0 {
             
-            cell.cellImage.backgroundColor = UIColor(red: 155/255.0, green: 212/255.0, blue: 235/255.0, alpha: 1.0)
+            if moviesWithoutDuplicatesDict[sortedMovieArray[indexPath.row]] > 1 {
+                
+                print("change cell color of \(indexPath.row)")
+                
+                cell.cellImage.backgroundColor = UIColor.greenColor()
+            }else {
+                cell.cellImage.backgroundColor = UIColor(red: 155/255.0, green: 212/255.0, blue: 235/255.0, alpha: 1.0)
+            }
             
         }else {
-            cell.cellImage.backgroundColor = UIColor(red: 181/255.0, green: 227/255.0, blue: 245/255.0, alpha: 1.0)
+            
+            if moviesWithoutDuplicatesDict[sortedMovieArray[indexPath.row]] > 1 {
+                
+                print("change cell color of \(indexPath.row)")
+                
+                cell.cellImage.backgroundColor = UIColor.greenColor()
+            }else {
+                
+                cell.cellImage.backgroundColor = UIColor(red: 181/255.0, green: 227/255.0, blue: 245/255.0, alpha: 1.0)
+            }
         }
         
         return cell
