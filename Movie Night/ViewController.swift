@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var leftBtn: UIButton!
     @IBOutlet weak var rightBtn: UIButton!
     @IBOutlet weak var viewResultsBtn: UIButton!
+    @IBOutlet weak var instructionLabel: UILabel!
     
     //-----------------------
     //MARK: View
@@ -40,6 +41,12 @@ class ViewController: UIViewController {
         //Round corners of view results button
         viewResultsBtn.layer.cornerRadius = 5
         viewResultsBtn.layer.masksToBounds = true
+        
+        //Instruction text for instruction label
+        instructionLabel.text = "Using the preference buttons both users take turns selecting their favourite genres followed by their favourite movies.\n\n Once both users have made their selections tap the View Results button to show all the movies that were selected. An icon will be displayed on movies that were selected by both users."
+        
+        //Fine tune asset positioning that could not be accomplished in autolayout
+        adjustAssets()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -106,6 +113,32 @@ class ViewController: UIViewController {
         rightBtn.selected = false
         
         selectedMovies.removeAll()
+    }
+    
+    func adjustAssets() {
+        
+        let height = view.frame.size.height
+        
+        if height == 568 {
+            
+            let move = CGAffineTransformMakeTranslation(-25, -60)
+            let scale = CGAffineTransformMakeScale(0.85, 0.85)
+            
+            let move2 = CGAffineTransformMakeTranslation(25, -60)
+            let scale2 = CGAffineTransformMakeScale(0.85, 0.85)
+            
+            leftBtn.transform = CGAffineTransformConcat(move, scale)
+            rightBtn.transform = CGAffineTransformConcat(move2, scale2)
+            
+            instructionLabel.font = instructionLabel.font.fontWithSize(13.0)
+            
+        }else if height == 736 {
+            
+            leftBtn.transform = CGAffineTransformMakeTranslation(0, 25)
+            rightBtn.transform = CGAffineTransformMakeTranslation(0, 25)
+
+            instructionLabel.font = instructionLabel.font.fontWithSize(16.0)
+        }
     }
     
     //-------------------------

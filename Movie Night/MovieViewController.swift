@@ -81,8 +81,7 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let movies = Section(title: self.selectedGenres[index].name, items: sortedMoviesArray)
                     self.sectionsArray.append(movies)
                     
-                    //Reload the table
-                    self.tableView.reloadData()
+                    print(self.sectionsArray)
                     
                     index += 1
                     
@@ -93,6 +92,9 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 default:
                     break
                 }
+                
+                //Reload the table
+                self.tableView.reloadData()
             }
         }
     }
@@ -117,8 +119,10 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! MovieTableViewCell
         
+        let sortedSectionArray = sectionsArray.sort { $0.title < $1.title }
+        
         //Set the text in the cells from the movie data
-        let movie = sectionsArray[indexPath.section].items[indexPath.row]
+        let movie = sortedSectionArray[indexPath.section].items[indexPath.row]
         cell.titleLabel.text = movie.title
         cell.yearLabel.text = movie.releaseDate
         
@@ -163,9 +167,9 @@ class MovieViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         //Set the title of each section
-        let sortedGenres = sectionsArray.sort { $0.title < $1.title }
+        let sortedSectionArray = sectionsArray.sort { $0.title < $1.title }
         
-        return sortedGenres[section].title
+        return sortedSectionArray[section].title
     }
     
     //-----------------------

@@ -25,7 +25,7 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    //General alert for errors etc
+    //Alert used for networkd errors
     func displayNetworkAlert(title:String, message:String) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)

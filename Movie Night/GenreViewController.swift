@@ -70,7 +70,7 @@ class GenreViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 //Assign the genres to the genre array and reload the table view
                 self.genreArray = genres
                 self.tableView.reloadData()
-                
+                                
             case .Failure(let error as NSError):
                 print(error.localizedDescription)
                 

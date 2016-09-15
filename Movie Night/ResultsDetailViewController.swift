@@ -46,7 +46,19 @@ class ResultsDetailViewController: UIViewController {
         fetchImageForMovie()
         
         //Set text of overview text label with movie overview
-        overviewTextLabel.text = movie?.overview
+        if let overview = movie?.overview {
+            
+            let fontAttribute = [NSFontAttributeName: UIFont.systemFontOfSize(17.0)]
+            let overviewString = NSMutableAttributedString(string: "Overview\n\n", attributes: fontAttribute)
+            let overviewTextStringAttribute = NSAttributedString(string: "\(overview)")
+            
+            overviewString.appendAttributedString(overviewTextStringAttribute)
+            
+            overviewTextLabel.attributedText = overviewString
+            
+        }else {
+            overviewTextLabel.text = "Overview\n\n No overview available"
+        }
     }
     
     //--------------------------------
