@@ -41,6 +41,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationItem.title = "Results"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reorder", style: .Plain, target: self, action: #selector(reorder))
         
         //Remove extra empty cells from the footer view
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -63,6 +64,9 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         //Array of movies using the keys from the moviesWithoutDuplicatesDict dictionary
         movieArray = Array(self.moviesWithoutDuplicatesDict.keys)
         
+        //Sort the movie array my title
+        movieArray = movieArray.sort { $0.title < $1.title }
+        
     }
     
     //-----------------------
@@ -83,11 +87,8 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! ResultsTableViewCell
         
-        //Sort the movie array my title
-        let sortedMovieArray = movieArray.sort { $0.title < $1.title }
-        
         //Set the text in the cells from the movie data
-        let movie = sortedMovieArray[indexPath.row]
+        let movie = movieArray[indexPath.row]
         cell.titleLabel.text = movie.title
         cell.yearLabel.text = movie.releaseDate
         
@@ -96,7 +97,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.cellImage.backgroundColor = UIColor(red: 155/255.0, green: 212/255.0, blue: 235/255.0, alpha: 1.0)
             
-            if moviesWithoutDuplicatesDict[sortedMovieArray[indexPath.row]] > 1 {
+            if moviesWithoutDuplicatesDict[movieArray[indexPath.row]] > 1 {
                 
                 cell.doubleSelectionImage.hidden = false
                 
@@ -109,7 +110,7 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             cell.cellImage.backgroundColor = UIColor(red: 181/255.0, green: 227/255.0, blue: 245/255.0, alpha: 1.0)
             
-            if moviesWithoutDuplicatesDict[sortedMovieArray[indexPath.row]] > 1 {
+            if moviesWithoutDuplicatesDict[movieArray[indexPath.row]] > 1 {
                 
                 cell.doubleSelectionImage.hidden = false
                 
@@ -124,14 +125,46 @@ class ResultsViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        //Sort movie array by title
-        let sortedMovieArray = movieArray.sort { $0.title < $1.title }
-        
         //Set the selected movie to the movie at the row selected
-        selectedMovie = sortedMovieArray[indexPath.row]
+        selectedMovie = movieArray[indexPath.row]
         
         //Segeue to the detail view of the selected movie
         performSegueWithIdentifier("ShowDetail", sender: self)
+    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.None
+    }
+    
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        
+        let itemToMove = movieArray[sourceIndexPath.row]
+        
+        movieArray.removeAtIndex(sourceIndexPath.row)
+        movieArray.insert(itemToMove, atIndex: destinationIndexPath.row)
+        
+        self.tableView.reloadData()
+    }
+    
+    //-----------------------
+    //MARK: Functions
+    //-----------------------
+    func reorder() {
+        
+        if(tableView.editing == true) {
+            tableView.setEditing(false, animated: true)
+
+        } else {
+            tableView.setEditing(true, animated: true)
+        }
     }
     
     //-------------------------

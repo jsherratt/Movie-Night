@@ -93,17 +93,17 @@
                                 <exclude reference="qZG-49-3pJ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="7c3-9C-ne3"/>
-                                <exclude reference="oU7-Vn-Wna"/>
-                                <exclude reference="ugA-8D-Scv"/>
+                                <exclude reference="cgT-lo-t4b"/>
+                                <exclude reference="oJt-MH-x0n"/>
                                 <exclude reference="kKf-Op-Ib6"/>
                                 <exclude reference="ttV-Tr-BwJ"/>
                                 <exclude reference="FFo-Nj-QEc"/>
                                 <exclude reference="H5i-es-pdS"/>
+                                <exclude reference="7c3-9C-ne3"/>
+                                <exclude reference="oU7-Vn-Wna"/>
+                                <exclude reference="ugA-8D-Scv"/>
                                 <exclude reference="OID-3r-CnK"/>
                                 <exclude reference="lpY-4d-rAi"/>
-                                <exclude reference="cgT-lo-t4b"/>
-                                <exclude reference="oJt-MH-x0n"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -114,17 +114,17 @@
                                 <include reference="qZG-49-3pJ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="7c3-9C-ne3"/>
-                                <include reference="oU7-Vn-Wna"/>
-                                <include reference="ugA-8D-Scv"/>
+                                <include reference="cgT-lo-t4b"/>
+                                <include reference="oJt-MH-x0n"/>
                                 <include reference="kKf-Op-Ib6"/>
                                 <include reference="ttV-Tr-BwJ"/>
                                 <include reference="FFo-Nj-QEc"/>
                                 <include reference="H5i-es-pdS"/>
+                                <include reference="7c3-9C-ne3"/>
+                                <include reference="oU7-Vn-Wna"/>
+                                <include reference="ugA-8D-Scv"/>
                                 <include reference="OID-3r-CnK"/>
                                 <include reference="lpY-4d-rAi"/>
-                                <include reference="cgT-lo-t4b"/>
-                                <include reference="oJt-MH-x0n"/>
                             </mask>
                         </variation>
                     </view>
@@ -177,10 +177,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="tYF-A9-a2l" customClass="GenreTableViewCell" customModule="Movie_Night" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tYF-A9-a2l" id="yhF-FV-uKq">
-                                            <frame key="frameInset" width="375" height="64"/>
+                                            <frame key="frameInset" width="1000" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gBM-8q-rZG">
@@ -354,10 +354,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Dvs-Wk-dcE" customClass="MovieTableViewCell" customModule="Movie_Night" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="64"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dvs-Wk-dcE" id="1cC-Z5-tz2">
-                                            <frame key="frameInset" width="1000" height="64"/>
+                                            <frame key="frameInset" width="375" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="1EL-2X-G6H">
@@ -526,7 +526,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="a0C-84-MxG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -544,10 +544,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="aH9-7l-WRM" customClass="ResultsTableViewCell" customModule="Movie_Night" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="64"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aH9-7l-WRM" id="yiw-bn-QlS">
-                                            <frame key="frameInset" width="818" height="64"/>
+                                            <frame key="frameInset" width="342" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gPo-fl-z0p">
