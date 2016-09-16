@@ -38,7 +38,7 @@ extension UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    //Option alert for when the user taps on selection button after already making them
+    //Option alert for when the user taps on preference button after already making selections
     func displayOptionAlert() {
         
         let alert = UIAlertController(title: "Oops", message: "You have already made your selections. Are you sure you want to do them again?", preferredStyle: .Alert)
